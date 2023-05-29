@@ -1,19 +1,22 @@
+//Old flow
 const request = require('request');
-const userBreed = process.argv[2];
 
-const url = `https://api.thecatapi.com/v1/breeds/search?q=${userBreed}`;
+const fetchBreedDescription = function(breedName, callback) {
+  const url = `https://api.thecatapi.com/v1/breeds/search?q=${breedName}`;
 
-
-request(url, (error,response,body) => {
-  const data = JSON.parse(body);
-
-  if (error) {
-    console.log("THIS IS THE ERROR:", error);
+  request(url, (error,response,body) => {
+    const data = JSON.parse(body);
   
-  } else if (typeof data[0] === 'undefined') {
-    console.log("breed not found");
+    if (error) {
+      callback(error, null); 
+    
+    } else if (typeof data[0] === 'undefined') {
+      callback("breed not found");
+  
+    } else {
+      callback(null, data[0].description);
+    }
+  });
+};
 
-  } else {
-    console.log(data[0].description);
-  }
-});
+module.exports = { fetchBreedDescription }
