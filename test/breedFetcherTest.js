@@ -20,11 +20,11 @@ describe('fetchBreedDescription', () => {
   it('return breed not found if an invalid breed is passed in', (done) => {
     fetchBreedDescription("notbreed", (err, desc) => {
       
-      const expectedDesc = "breed not found"
+      const expectedDesc = "breed not found";
 
-      assert.equal(expectedDesc, err)
+      assert.equal(expectedDesc, err);
 
       done();
-    })
+    });
   });
 });
