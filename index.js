@@ -1,5 +1,6 @@
-const {fetchBreedDescription} = require('./breedFetcher.js')
-const breedName = process.argv[2]
+//Moving the required functions over and putting our user arguments into here
+const {fetchBreedDescription} = require('./breedFetcher.js');
+const breedName = process.argv[2];
 
 fetchBreedDescription(breedName, (error, description) => {
   if (error) {
@@ -8,3 +9,4 @@ fetchBreedDescription(breedName, (error, description) => {
     console.log(description);
   }
 });
+
